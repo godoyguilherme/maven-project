@@ -31,13 +31,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "winscp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ec2-user@${params.tomcat_stg}:/var/lib/tomcat7/webapps"
+                        bat "pscp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ec2-user@${params.tomcat_stg}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "winscp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "pscp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
