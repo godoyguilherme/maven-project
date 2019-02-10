@@ -6,8 +6,8 @@ pipeline {
 	}
 
     parameters {
-         string(name: 'tomcat_stg', defaultValue: '18.231.192.24', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: '18.228.235.163', description: 'Production Server')
+         string(name: 'tomcat_stg', defaultValue: 'localhost:8090', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'localhost:8091', description: 'Production Server')
     }
 
     triggers {
@@ -31,13 +31,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "winscp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ec2-user@${params.tomcat_stg}:/var/lib/tomcat7/webapps"
+                        bat "wincp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ${params.tomcat_stg}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "winscp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "wincp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
