@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	
+	tools{
+		maven 'localMaven'
+	}
 
     parameters {
          string(name: 'tomcat_stg', defaultValue: 'http://localhost:8090', description: 'Staging Server')
