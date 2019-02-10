@@ -6,8 +6,8 @@ pipeline {
 	}
 
     parameters {
-         string(name: 'tomcat_stg', defaultValue: 'localhost:8090', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: 'localhost:8091', description: 'Production Server')
+         string(name: 'tomcat_stg', defaultValue: 'http://localhost:8090', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'http://localhost:8091', description: 'Production Server')
     }
 
     triggers {
@@ -31,13 +31,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "wincp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ${params.tomcat_stg}:/var/lib/tomcat7/webapps"
-                    }
-                }
-
-                stage ("Deploy to Production"){
-                    steps {
-                        bat "wincp -i /Users/GGDY/Desktop/tomcat-demo.pem **/*.war ${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "wincp **/*.war ${params.tomcat_stg}:/apache-tomcat-8.5.37/apache-tomcat-8.5.37 staging/webapps"
                     }
                 }
             }
