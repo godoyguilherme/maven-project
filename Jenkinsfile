@@ -31,7 +31,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "wincp **/*.war ${params.tomcat_stg}:/apache-tomcat-8.5.37/apache-tomcat-8.5.37 staging/webapps"
+                        bat "winscp **/*.war ${params.tomcat_stg}:/apache-tomcat-8.5.37/apache-tomcat-8.5.37 staging/webapps"
                     }
                 }
             }
