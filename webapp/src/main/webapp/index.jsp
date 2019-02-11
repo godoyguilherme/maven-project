@@ -1,1 +1,1 @@
-Hello, World! version Live!
+Hello, World!
